@@ -1,0 +1,20 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('./index');
+
+const Trail = sequelize.define('Trail', {
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  description: DataTypes.TEXT,
+  gpxUrl: DataTypes.STRING,
+  distance_km: DataTypes.FLOAT,
+  elevation_gain_m: DataTypes.FLOAT
+});
+
+module.exports = Trail;

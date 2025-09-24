@@ -1,0 +1,1 @@
+GET http://localhost:3001/api/trails/6005ee48-b1ee-457f-873c-f92ba7488ddf
