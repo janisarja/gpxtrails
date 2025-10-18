@@ -7,7 +7,9 @@ app.use(express.json());
 app.use('/api/trails', require('./routes/trails.js'));
 
 (async () => {
-  await sequelize.sync();
+  await sequelize.sync({ alter: true })
+  .then(() => console.log('Database synced'))
+  .catch(err => console.error('Database sync error:', err));
 })();
 
 const PORT = 3001;

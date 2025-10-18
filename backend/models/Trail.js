@@ -12,9 +12,9 @@ const Trail = sequelize.define('Trail', {
     allowNull: false
   },
   description: DataTypes.TEXT,
-  gpxUrl: DataTypes.STRING,
   distance_km: DataTypes.FLOAT,
-  elevation_gain_m: DataTypes.FLOAT
+  elevation_gain_m: DataTypes.FLOAT,
+  geojson: DataTypes.JSONB
 });
 
 module.exports = Trail;

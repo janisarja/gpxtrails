@@ -5,8 +5,8 @@ const router = express.Router();
 // POST /api/trails
 router.post('/', async (req, res) => {
   try {
-    const { name, description, gpxUrl, distance_km, elevation_gain_m } = req.body;
-    const trail = await Trail.create({ name, description, gpxUrl, distance_km, elevation_gain_m });
+    const { name, description, distance_km, elevation_gain_m, geojson } = req.body;
+    const trail = await Trail.create({ name, description, distance_km, elevation_gain_m, geojson });
     res.status(201).json(trail);
   } catch (err) {
     console.error(err);
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/trail:id
+// GET /api/trails:id
 router.get('/:id', async (req, res) => {
   try {
     const trail = await Trail.findByPk(req.params.id);
