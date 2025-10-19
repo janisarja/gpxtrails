@@ -1,12 +1,17 @@
 const express = require('express');
+const  turf = require('@turf/turf');
 const Trail = require('../models/Trail');
 const router = express.Router();
 
 // POST /api/trails
 router.post('/', async (req, res) => {
   try {
-    const { name, description, distance_km, geojson } = req.body;
+    const { name, description, geojson } = req.body;
+    const geometry = turf.lineString(geojson.geometry.coordinates);
+    const distance_km = turf.length(geometry, { units: 'kilometers' })
+
     const trail = await Trail.create({ name, description, distance_km, geojson });
+    
     res.status(201).json(trail);
   } catch (err) {
     console.error(err);

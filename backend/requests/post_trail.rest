@@ -4,14 +4,14 @@ Content-Type: application/json
 {
   "name": "Some Trail",
   "description": "Coolest trail ever.",
-  "distance_km": 5.4,
   "geojson": {
     "type": "Feature",
     "geometry": {
       "type": "LineString",
       "coordinates": [
         [24.9384, 60.1699],
-        [24.9391, 60.1703]
+        [24.9391, 60.1703],
+        [24.9000, 60.1700]
       ]
     },
     "properties": {}
