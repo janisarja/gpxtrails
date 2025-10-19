@@ -13,7 +13,6 @@ const Trail = sequelize.define('Trail', {
   },
   description: DataTypes.TEXT,
   distance_km: DataTypes.FLOAT,
-  elevation_gain_m: DataTypes.FLOAT,
   geojson: DataTypes.JSONB
 });
 

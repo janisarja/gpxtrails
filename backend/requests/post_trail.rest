@@ -5,7 +5,6 @@ Content-Type: application/json
   "name": "Some Trail",
   "description": "Coolest trail ever.",
   "distance_km": 5.4,
-  "elevation_gain_m": 210,
   "geojson": {
     "type": "Feature",
     "geometry": {
