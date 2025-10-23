@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const sequelize = require('./models/index.js');
 const Trail = require('./models/Trail.js')
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use('/api/trails', require('./routes/trails.js'));
 
