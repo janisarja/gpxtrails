@@ -1,4 +1,4 @@
-const sequelize = require('./index.js');
+const sequelize = require('../models/index.js');
 
 sequelize.authenticate()
   .then(() => console.log('DB connected'))

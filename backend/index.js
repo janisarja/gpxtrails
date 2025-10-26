@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./models/index.js');
-const Trail = require('./models/Trail.js')
+const sequelize = require('./config/database');
+const Trail = require('./models/Trail')
 
 const app = express();
 app.use(cors());
