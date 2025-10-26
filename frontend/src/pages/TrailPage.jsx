@@ -21,7 +21,7 @@ const TrailPage = () => {
       <h1>{trail.name}</h1>
       <p>Kuvaus: {trail.description}</p>
       <p>Pituus: {trail.distance_km}</p>
-      <TrailMap trail={trail.geojson}/>
+      <TrailMap trail={trail.geojson} center={trail.center}/>
     </div>
   );
 }
