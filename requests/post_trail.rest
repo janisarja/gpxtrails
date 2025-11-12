@@ -1,0 +1,19 @@
+POST http://localhost:3000/api/trails
+Content-Type: application/json
+
+{
+  "name": "Some Trail",
+  "description": "Coolest trail ever.",
+  "geojson": {
+    "type": "Feature",
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [24.9384, 61.1699],
+        [24.9391, 60.1703],
+        [24.9000, 60.1700]
+      ]
+    },
+    "properties": {}
+  }
+}
