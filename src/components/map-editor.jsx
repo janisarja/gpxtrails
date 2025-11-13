@@ -15,7 +15,6 @@ const EditableTrailLayer = () => {
   //const [eraseMode, setEraseMode] = useState(false);
 
   useEffect(() => {
-    console.log(map._eraseMode);
     if (!map || !map.editTools) return;
 
     // Create an editable polyline
@@ -31,8 +30,11 @@ const EditableTrailLayer = () => {
           icon: drawIcon,
           title: 'Switch to Erase Mode',
           onClick: (btn, map) => {
-            map._eraseMode = true;
-            btn.state('erase-mode');
+            if (polyline.getLatLngs().length >= 2) {
+              map.editTools.commitDrawing();
+              map._eraseMode = true;
+              btn.state('erase-mode');
+            }
           }
         },
         {
@@ -48,12 +50,13 @@ const EditableTrailLayer = () => {
     }).addTo(map);
 
     const clickHandler = (e) => {
-      console.log(map._eraseMode);
-      if (map._eraseMode) {
-        console.log('Erasing vertex');
-      } else {
+      if (!map._eraseMode) {
         e.cancel();
-        map.editTools.drawing() ? map.editTools.stopDrawing() : e.vertex.continue();
+        if (map.editTools.drawing() && polyline.getLatLngs().length >= 2){
+          map.editTools.stopDrawing();
+        } else {
+          e.vertex.continue();
+        }
       }
     }
 
@@ -72,7 +75,7 @@ const EditableTrailLayer = () => {
 const MapEditor = () => {
   return (
     <div>
-      <p> In draw mode click on one of the ends to start drawing. Click on any point to stop drawing. Click and drag points to move them. Add more points in the middle of the line by clicking and dragging on them. In erase mode click on points to delete them. Use button in top left corner to switch between draw mode and erase mode.</p>
+      <p> In draw mode click on one of the ends to start drawing. Click on any point to stop drawing. Click and drag points to move them. Add more points in the middle of the line by clicking and dragging on them. In erase mode click on points to delete them. Use button in top left corner to switch between draw mode and erase mode. You must add atleast two points before switching to erase mode.</p>
       <MapContainer 
         editable={true}
         center={[51.505, -0.09]}
