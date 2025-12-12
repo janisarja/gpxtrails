@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet-editable';
 import 'leaflet-easybutton'
@@ -10,7 +10,7 @@ import { createElement, Route, Eraser } from 'lucide';
 const drawIcon = createElement(Route).outerHTML;
 const eraseIcon = createElement(Eraser).outerHTML;
 
-const EditableTrailLayer = ({ gpxTrail }) => {
+const EditableTrailLayer = ({ gpxTrail, onPolylineReady }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -67,18 +67,22 @@ const EditableTrailLayer = ({ gpxTrail }) => {
 
     map.on('editable:vertex:click', clickHandler);
 
+    // Set polyline for geojson extraction
+    onPolylineReady?.(polyline);
+
     // Cleanup on unmount
     return () => {
       map.off('editable:vertex:click', clickHandler);
       map.removeControl(editModeButton);
       map.removeLayer(polyline);
     }
-  }, [map, gpxTrail]);
+  }, [map, gpxTrail, onPolylineReady]);
 
   return null;
 }
 
-const MapEditor = ({ gpxTrail }) => {
+const MapEditor = ({ gpxTrail, onPolylineReady }) => {
+
   return (
     <div>
       <p> In draw mode click on one of the ends to start drawing. Click on any point to stop drawing. Click and drag points to move them. Add more points in the middle of the line by clicking and dragging on them. In erase mode click on points to delete them. Use button in top left corner to switch between draw mode and erase mode. You must add atleast two points before switching to erase mode.</p>
@@ -94,7 +98,7 @@ const MapEditor = ({ gpxTrail }) => {
           attribution='Map Data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | Map Display: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href=https://creativecommons.org/licenses/by-sa/3.0/>CC-BY-SA<a>)'
           url='https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png'
         />
-        <EditableTrailLayer gpxTrail={gpxTrail}/>
+        <EditableTrailLayer gpxTrail={gpxTrail} onPolylineReady={onPolylineReady}/>
       </MapContainer>
     </div>
   );

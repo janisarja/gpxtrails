@@ -7,7 +7,7 @@ const MapEditor = dynamic(() => import('./map-editor'), {
   loading: () => <p>Loading map...</p>, 
 });
 
-const MapEditorWrapper = (props) => {
+const MapEditorWrapper = ({ ...props }) => {
   return <MapEditor {...props} />;
 };
 
