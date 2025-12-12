@@ -5,9 +5,9 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import 'leaflet-editable';
 import 'leaflet-easybutton'
 import 'leaflet/dist/leaflet.css';
-import { createElement, Route, Eraser } from 'lucide';
+import { createElement, Route, Pencil, Eraser } from 'lucide';
 
-const drawIcon = createElement(Route).outerHTML;
+const drawIcon = createElement(Pencil).outerHTML;
 const eraseIcon = createElement(Eraser).outerHTML;
 
 const EditableTrailLayer = ({ gpxTrail, onPolylineReady }) => {
