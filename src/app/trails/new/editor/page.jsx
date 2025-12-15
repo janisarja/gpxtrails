@@ -1,8 +1,12 @@
-"use client";
+'use client';
 
-import GPXUploader from '@/src/components/gpx-uploader';
-import MapEditorWrapper from '@/src/components/map-editor-wrapper';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const MapEditor = dynamic(() => import('@/src/components/map-editor'), { 
+  ssr: false,
+  loading: () => <p>Loading map editor...</p>, 
+});
 
 const Page = () => {
   const [polyline, setPolyline] = useState(null);
@@ -14,8 +18,7 @@ const Page = () => {
 
   return (
     <div>
-      <GPXUploader />
-      <MapEditorWrapper onPolylineReady={setPolyline} />
+      <MapEditor onPolylineReady={setPolyline} />
       <button onClick={handleUpload}>Upload Trail</button>
     </div>
   );
