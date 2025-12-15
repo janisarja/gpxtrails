@@ -8,19 +8,45 @@ const MapEditor = dynamic(() => import('@/src/components/map-editor'), {
   loading: () => <p>Loading map editor...</p>, 
 });
 
+// API call and buttontext are passed as props to allow use for both uploading
+// new trails and editing existing ones.
 const TrailEditor = ({ apiCall, buttonText }) => {
   const [polyline, setPolyline] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const geojson = polyline?.toGeoJSON();
 
-    console.log('Upload:', geojson);
-    console.log('Name:', name);
-    console.log('Description:', description);
+    if (!geojson) {
+      alert('No trail to upload');
+      return;
+    }
+
+    if (!name) {
+      alert('Please provide a trail name');
+      return;
+    }
+
+    const payload = {
+      name,
+      description,
+      geojson,
+    };
+    
+    try {
+      const res = await apiCall(payload);
+      if (!res.ok) {
+        throw new Error(`Upload failed (${res.status})`);
+      }
+      console.log('Trail uploaded:', res.json());
+      alert('Trail uploaded successfully!');
+    } catch (err) {
+      console.error(err);
+      alert(err.message || 'Upload failed');
+    }
   };
 
   return (
