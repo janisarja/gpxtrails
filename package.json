@@ -21,7 +21,8 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-leaflet": "^5.0.0",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "togpx": "^0.5.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
