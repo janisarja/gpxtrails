@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-editable';
 import 'leaflet-easybutton';
 
-const EditableTrailLayer = ({ gpxTrail, onPolylineReady }) => {
+const EditableTrailLayer = ({ loadedTrail, onPolylineReady }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const EditableTrailLayer = ({ gpxTrail, onPolylineReady }) => {
     const eraseIcon = createElement(Eraser).outerHTML;
 
     // Initialize the polyline from gpxTrail or empty if not provided
-    const latlngs = gpxTrail?.geometry.coordinates.map(([lon, lat]) => [lat, lon]);
+    const latlngs = loadedTrail?.geometry?.coordinates?.map(([lon, lat]) => [lat, lon]);
     const polyline = L.polyline(latlngs || [], { color: 'blue' }).addTo(map);
     polyline.enableEdit(map);
     polyline.editor.continueForward();
@@ -50,7 +50,7 @@ const EditableTrailLayer = ({ gpxTrail, onPolylineReady }) => {
       ]
     }).addTo(map);
 
-    const clickHandler = (e) => {
+    const handleClick = (e) => {
       if (!map._eraseMode) {
         // Cancelf default erase behaviour in draw mode
         e.cancel();
@@ -63,18 +63,18 @@ const EditableTrailLayer = ({ gpxTrail, onPolylineReady }) => {
       }
     }
 
-    map.on('editable:vertex:click', clickHandler);
+    map.on('editable:vertex:click', handleClick);
 
     // Set polyline for geojson extraction
     onPolylineReady?.(polyline);
 
     // Cleanup on unmount
     return () => {
-      map.off('editable:vertex:click', clickHandler);
+      map.off('editable:vertex:click', handleClick);
       map.removeControl(editModeButton);
       map.removeLayer(polyline);
     }
-  }, [map, gpxTrail, onPolylineReady]);
+  }, [map, loadedTrail, onPolylineReady]);
 
   return null;
 }

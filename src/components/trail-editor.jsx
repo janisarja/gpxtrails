@@ -33,7 +33,7 @@ const TrailEditor = ({ apiCall, buttonText }) => {
     const payload = {
       name,
       description,
-      geojson,
+      geojson
     };
     
     try {
