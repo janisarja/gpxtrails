@@ -6,7 +6,8 @@ const Page = async () => {
   try {
     trails = await getAllTrails();
   } catch (err) {
-    return (<div>{res.status} Failed to fetch trails</div>)
+    console.log(err);
+    return (<div>Failed to fetch trails</div>)
   }
 
   if (trails) return (
