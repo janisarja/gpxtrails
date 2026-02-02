@@ -4,9 +4,9 @@ import Nav from './nav';
 
 const Header = () => {
   return (
-    <header className="border-b bg-white">
-      <div className="container">
-        <div className="flex items-center justify-between py-3">
+    <header className="border-b bg-white" style={{ height: 'var(--header-height)' }}>
+      <div className="container h-full">
+        <div className="flex items-center justify-between h-full">
           <h1 className="text-lg font-semibold text-slate-900">GPX Trails</h1>
           <Nav />
         </div>

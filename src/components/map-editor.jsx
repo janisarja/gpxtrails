@@ -11,9 +11,12 @@ const Map = dynamic(() => import('./map'), {
 const MapEditor = ({ onPolylineReady, loadedTrail }) => {
 
   return (
-    <div>
-      <Map trailLayer={<EditableTrailLayer loadedTrail={loadedTrail} onPolylineReady={onPolylineReady}/>} />
-    </div>
+    <Map 
+      trailLayer={<EditableTrailLayer 
+        loadedTrail={loadedTrail} 
+        onPolylineReady={onPolylineReady}
+      />} 
+    />
   );
 }
 
