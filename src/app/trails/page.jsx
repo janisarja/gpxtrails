@@ -1,6 +1,7 @@
 import TrailList from '@/src/components/trail-list';
 import { getAllTrails } from '@/src/controllers/trail-controller';
 import AllTrailsMapWrapper from '@/src/components/all-trails-map-wrapper';
+import TwoColumnLayout from '@/src/components/two-column-layout';
 
 const Page = async () => {
   let trails;
@@ -14,10 +15,10 @@ const Page = async () => {
   }
 
   if (trails) return (
-    <div>
-      <TrailList trails={trails} />
-      <AllTrailsMapWrapper trails={trails} />
-    </div>
+    <TwoColumnLayout
+      left={<TrailList trails={trails} />}
+      right={<AllTrailsMapWrapper trails={trails} />}
+    />
   );
 }
 

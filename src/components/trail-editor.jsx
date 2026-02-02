@@ -54,9 +54,7 @@ const TrailEditor = ({ apiCall, buttonText }) => {
 
   return (
     <div>
-      <MapEditor onPolylineReady={setPolyline} loadedTrail={loadedTrail}/>
       <GPXLoader setTrail={setLoadedTrail} />
-      <MapInstructions />
       <TrailForm 
         buttonText={buttonText}
         name={name}
@@ -66,6 +64,8 @@ const TrailEditor = ({ apiCall, buttonText }) => {
         apiCall={apiCall}
         handleSubmit={handleSubmit}
       />
+      <MapInstructions />
+      <MapEditor onPolylineReady={setPolyline} loadedTrail={loadedTrail}/>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import TrailInfo from '@/src/components/trail-info';
 import TrailMapWrapper from '@/src/components/trail-map-wrapper';
 import { getTrailById } from '@/src/controllers/trail-controller';
 import GPXDownloaderWrapper from '@/src/components/gpx-downloader-wrapper';
+import TwoColumnLayout from '@/src/components/two-column-layout';
 
 const Page = async ({ params }) => {
   const { id } = await params;
@@ -15,15 +16,24 @@ const Page = async ({ params }) => {
   }
 
   if (trail) return (
-    <div>
-      <TrailInfo trail={trail} />
-      <TrailMapWrapper trail={trail.geojson} center={trail.center} />
-      <GPXDownloaderWrapper 
-        name={trail.name} 
-        desc={trail.description} 
-        geojson={trail.geojson}
-      />
-    </div>
+    <TwoColumnLayout
+      left={(
+        <div>
+          <TrailInfo trail={trail} />
+          <GPXDownloaderWrapper 
+            name={trail.name} 
+            desc={trail.description} 
+            geojson={trail.geojson}
+          />
+        </div>
+      )}
+      right={
+        <TrailMapWrapper 
+          trail={trail.geojson} 
+          center={trail.center} 
+        />
+      }
+    />
   );
 }
 
