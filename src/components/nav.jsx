@@ -8,7 +8,7 @@ const Nav = () => {
       <ul className="flex items-center gap-3">
         <li><NavButton href="/">Home</NavButton></li>
         <li><NavButton href="/trails">Trails</NavButton></li>
-        <li><NavButton href="/trails/new/editor">New Trail</NavButton></li>
+        <li><NavButton href="/trails/new">New Trail</NavButton></li>
       </ul>
     </nav>
   );
