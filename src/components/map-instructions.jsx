@@ -1,5 +1,8 @@
 import { useState } from 'react';
+<<<<<<< HEAD
 import ButtonSmall from './button-small';
+=======
+>>>>>>> 6f21278 (Refactor editor and move editor to /trails/new)
 
 const MapInstructions = () => {
   const [showInstructions, setShowInstructions] = useState(false);
