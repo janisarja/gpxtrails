@@ -2,19 +2,22 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import TrailForm from './trail-form'
+import MapInstructions from './map-instructions.jsx';
+import GPXLoader from './gpx-loader';
 
-const MapEditor = dynamic(() => import('@/src/components/map-editor'), { 
+const MapEditor = dynamic(() => import('./map-editor'), { 
   ssr: false,
-  loading: () => <p>Loading map editor...</p>, 
+  loading: () => <p>Loading map...</p>, 
 });
 
 // API call and buttontext are passed as props to allow use for both uploading
 // new trails and editing existing ones.
 const TrailEditor = ({ apiCall, buttonText }) => {
   const [polyline, setPolyline] = useState(null);
+  const [loadedTrail, setLoadedTrail] = useState(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,27 +54,18 @@ const TrailEditor = ({ apiCall, buttonText }) => {
 
   return (
     <div>
-      <MapEditor onPolylineReady={setPolyline} />
-      <form
-        onSubmit={handleSubmit}
-      >
-        <label>
-          Trail Name:
-          <input 
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea 
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        <button type="submit">{buttonText}</button>
-      </form>
+      <MapEditor onPolylineReady={setPolyline} loadedTrail={loadedTrail}/>
+      <GPXLoader setTrail={setLoadedTrail} />
+      <MapInstructions />
+      <TrailForm 
+        buttonText={buttonText}
+        name={name}
+        setName={setName}
+        description={description}
+        setDescription={setDescription}
+        apiCall={apiCall}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 }
