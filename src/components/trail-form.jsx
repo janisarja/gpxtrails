@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import ButtonLarge from "./button-large";
 
-=======
->>>>>>> 6f21278 (Refactor editor and move editor to /trails/new)
 const TrailForm = ({ 
     buttonText, 
     name, setName, 
