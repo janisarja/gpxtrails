@@ -63,7 +63,7 @@ const Page = () => {
   return (
     <TwoColumnLayout 
       left={
-        <div>
+        <>
           <GPXLoader setTrail={setLoadedTrail} />
           <TrailForm 
             buttonText={'Upload Trail'}
@@ -75,7 +75,7 @@ const Page = () => {
             handleSubmit={handleSubmit}
           />
           <MapInstructions />
-        </div>
+        </>
       } 
       right={
         <MapEditor 
