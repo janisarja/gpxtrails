@@ -1,6 +1,7 @@
 'use client';
 
 import togpx from 'togpx';
+import ButtonLarge from './button-large';
 
 export function GPXDownloader({ name, desc, geojson }) {
 
@@ -18,8 +19,7 @@ export function GPXDownloader({ name, desc, geojson }) {
       .replace(/-+/g, '-')
       // Prevent empty filename
       || fallback;
-  }
-
+  };
 
   const handleDownload = () => {
     const gpx = togpx(geojson, {
@@ -43,9 +43,7 @@ export function GPXDownloader({ name, desc, geojson }) {
   };
 
   return (
-    <button onClick={handleDownload}>
-      Download GPX
-    </button>
+    <ButtonLarge onClick={handleDownload} text="Download GPX" />
   );
 }
 
