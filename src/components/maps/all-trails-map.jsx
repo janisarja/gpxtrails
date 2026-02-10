@@ -31,7 +31,7 @@ const AllTrailsMap = ({ trails }) => {
     );
   });
 
-  return <Map trailLayer={trailLayer} />;
+  return <Map ariaLabel="All trails map" trailLayer={trailLayer} />;
 };
 
 export default AllTrailsMap;

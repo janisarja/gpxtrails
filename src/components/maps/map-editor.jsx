@@ -12,6 +12,7 @@ const MapEditor = ({ onPolylineReady, loadedTrail }) => {
 
   return (
     <Map 
+      ariaLabel="Trail editor map"
       trailLayer={<EditableTrailLayer 
         loadedTrail={loadedTrail} 
         onPolylineReady={onPolylineReady}

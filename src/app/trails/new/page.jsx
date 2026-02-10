@@ -61,29 +61,34 @@ const Page = () => {
   };
 
   return (
-    <TwoColumnLayout 
-      left={
-        <>
-          <GPXLoader setTrail={setLoadedTrail} />
-          <TrailForm 
-            buttonText={'Upload Trail'}
-            name={name}
-            setName={setName}
-            description={description}
-            setDescription={setDescription}
-            apiCall={postTrail}
-            handleSubmit={handleSubmit}
+    <section aria-labelledby="new-trail-title">
+      <h1 id="new-trail-title" className="sr-only">Create a new trail</h1>
+      <TwoColumnLayout 
+        leftLabel="Trail editor"
+        rightLabel="Map editor"
+        left={
+          <>
+            <GPXLoader setTrail={setLoadedTrail} />
+            <TrailForm 
+              buttonText={'Upload Trail'}
+              name={name}
+              setName={setName}
+              description={description}
+              setDescription={setDescription}
+              apiCall={postTrail}
+              handleSubmit={handleSubmit}
+            />
+            <MapInstructions />
+          </>
+        } 
+        right={
+          <MapEditor 
+            onPolylineReady={setPolyline} 
+            loadedTrail={loadedTrail} 
           />
-          <MapInstructions />
-        </>
-      } 
-      right={
-        <MapEditor 
-          onPolylineReady={setPolyline} 
-          loadedTrail={loadedTrail} 
-        />
-      } 
-    />
+        } 
+      />
+    </section>
   );
 }
 

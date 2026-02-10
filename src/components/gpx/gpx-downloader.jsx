@@ -43,7 +43,11 @@ export function GPXDownloader({ name, desc, geojson }) {
   };
 
   return (
-    <ButtonLarge onClick={handleDownload} text="Download GPX" />
+    <ButtonLarge
+      onClick={handleDownload}
+      text="Download GPX"
+      aria-label="Download GPX file"
+    />
   );
 }
 

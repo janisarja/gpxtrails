@@ -2,7 +2,7 @@
 
 import { MapContainer, TileLayer } from 'react-leaflet';
 
-const Map = ({ trailLayer }) => {
+const Map = ({ trailLayer, ariaLabel = 'Map' }) => {
 
   return (
     <MapContainer 
@@ -11,6 +11,8 @@ const Map = ({ trailLayer }) => {
       zoom={4.3} 
       zoomControl={false}
       scrollWheelZoom={true}
+      role="region"
+      aria-label={ariaLabel}
       style={{ height: '100%', width: '100%' }}
     >
       <TileLayer

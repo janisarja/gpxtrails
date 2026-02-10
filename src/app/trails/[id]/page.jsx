@@ -16,24 +16,29 @@ const Page = async ({ params }) => {
   }
 
   if (trail) return (
-    <TwoColumnLayout
-      left={(
-        <div>
-          <TrailInfo trail={trail} />
-          <GPXDownloaderWrapper 
-            name={trail.name} 
-            desc={trail.description} 
-            geojson={trail.geojson}
+    <section aria-labelledby="trail-title">
+      <h1 id="trail-title" className="sr-only">Trail details</h1>
+      <TwoColumnLayout
+        leftLabel="Trail details"
+        rightLabel="Trail map"
+        left={(
+          <>
+            <TrailInfo trail={trail} headingId="trail-name" />
+            <GPXDownloaderWrapper 
+              name={trail.name} 
+              desc={trail.description} 
+              geojson={trail.geojson}
+            />
+          </>
+        )}
+        right={
+          <TrailMapWrapper 
+            trail={trail.geojson} 
+            center={trail.center} 
           />
-        </div>
-      )}
-      right={
-        <TrailMapWrapper 
-          trail={trail.geojson} 
-          center={trail.center} 
-        />
-      }
-    />
+        }
+      />
+    </section>
   );
 }
 

@@ -15,10 +15,15 @@ const Page = async () => {
   }
 
   if (trails) return (
-    <TwoColumnLayout
-      left={<TrailList trails={trails} />}
-      right={<AllTrailsMapWrapper trails={trails} />}
-    />
+    <section aria-labelledby="trails-title">
+      <h1 id="trails-title" className="sr-only">Trails</h1>
+      <TwoColumnLayout
+        leftLabel="Trail list"
+        rightLabel="Trails map"
+        left={<TrailList trails={trails} />}
+        right={<AllTrailsMapWrapper trails={trails} />}
+      />
+    </section>
   );
 }
 

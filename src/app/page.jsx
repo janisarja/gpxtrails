@@ -5,8 +5,9 @@ const { default: Card } = require("../components/ui/card")
 
 const Page = () => {
   return (
-    <div>
-      <p className=" p-4 m-10 max-w-md mx-auto text-center">
+    <section aria-labelledby="home-title">
+      <h1 id="home-title" className="sr-only">GPX Trails</h1>
+      <p className="p-4 m-10 max-w-md mx-auto text-center">
         A platform for discovering, creating and sharing trails for trail running and hiking.
       </p>
       <Card 
@@ -25,7 +26,7 @@ const Page = () => {
         </p>
         <Link href="/trails/new"><ButtonLarge text="Make Your Own"/></Link>
       </Card>
-    </div>
+    </section>
   );
 }
 
