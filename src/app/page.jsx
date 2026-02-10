@@ -1,7 +1,7 @@
 import Link from "next/link";
-import ButtonLarge from "../components/button-large";
+import ButtonLarge from "@/src/components/ui/button-large";
 
-const { default: Card } = require("../components/card")
+const { default: Card } = require("../components/ui/card")
 
 const Page = () => {
   return (

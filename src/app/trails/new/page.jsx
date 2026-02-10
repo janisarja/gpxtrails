@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import TrailForm from '@/src/components/trail-form';
-import MapInstructions from '@/src/components/map-instructions.jsx';
-import GPXLoader from '@/src/components/gpx-loader';
-import TwoColumnLayout from '@/src/components/two-column-layout';
+import TrailForm from '@/src/components/trails/trail-form';
+import MapInstructions from '@/src/components/maps/map-instructions.jsx';
+import GPXLoader from '@/src/components/gpx/gpx-loader';
+import TwoColumnLayout from '@/src/components/ui/two-column-layout';
 
-const MapEditor = dynamic(() => import('@/src/components/map-editor'), { 
+const MapEditor = dynamic(() => import('@/src/components/maps/map-editor'), { 
   ssr: false,
   loading: () => <p>Loading map...</p>,
 });

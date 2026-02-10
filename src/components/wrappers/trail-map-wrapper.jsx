@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 
-const TrailMap = dynamic(() => import('./trail-map'), { 
+const TrailMap = dynamic(() => import('@/src/components/maps/trail-map'), { 
   ssr: false,
   loading: () => <p>Loading map...</p>, 
 });

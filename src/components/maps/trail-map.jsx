@@ -2,7 +2,7 @@
 
 import { GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import Map from './map';
+import Map from '@/src/components/maps/map';
 
 const TrailMap = ({ trail }) => {
   if (trail) return (

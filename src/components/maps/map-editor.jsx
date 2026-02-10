@@ -1,9 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import EditableTrailLayer from './editable-trail-layer';
+import EditableTrailLayer from '@/src/components/maps/editable-trail-layer';
 
-const Map = dynamic(() => import('./map'), { 
+const Map = dynamic(() => import('@/src/components/maps/map'), { 
   ssr: false,
   loading: () => <p>Loading map...</p>, 
 });

@@ -2,7 +2,7 @@
 import { CircleMarker, Popup } from 'react-leaflet';
 import Link from 'next/link';
 import 'leaflet/dist/leaflet.css';
-import Map from './map';
+import Map from '@/src/components/maps/map';
 
 const AllTrailsMap = ({ trails }) => {
   if (!trails || !Array.isArray(trails)) return <p>Could not load trails.</p>;

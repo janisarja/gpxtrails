@@ -1,8 +1,8 @@
-import TrailInfo from '@/src/components/trail-info';
-import TrailMapWrapper from '@/src/components/trail-map-wrapper';
+import TrailInfo from '@/src/components/trails/trail-info';
+import TrailMapWrapper from '@/src/components/wrappers/trail-map-wrapper';
 import { getTrailById } from '@/src/controllers/trail-controller';
-import GPXDownloaderWrapper from '@/src/components/gpx-downloader-wrapper';
-import TwoColumnLayout from '@/src/components/two-column-layout';
+import GPXDownloaderWrapper from '@/src/components/wrappers/gpx-downloader-wrapper';
+import TwoColumnLayout from '@/src/components/ui/two-column-layout';
 
 const Page = async ({ params }) => {
   const { id } = await params;

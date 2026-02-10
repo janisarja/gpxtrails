@@ -1,7 +1,7 @@
 'use client';
 
 import togpx from 'togpx';
-import ButtonLarge from './button-large';
+import ButtonLarge from '@/src/components/ui/button-large';
 
 export function GPXDownloader({ name, desc, geojson }) {
 

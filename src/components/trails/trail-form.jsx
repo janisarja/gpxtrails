@@ -1,4 +1,4 @@
-import ButtonLarge from "./button-large";
+import ButtonLarge from "@/src/components/ui/button-large";
 
 const TrailForm = ({ 
     buttonText, 

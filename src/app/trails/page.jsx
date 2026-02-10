@@ -1,7 +1,7 @@
-import TrailList from '@/src/components/trail-list';
+import TrailList from '@/src/components/trails/trail-list';
 import { getAllTrails } from '@/src/controllers/trail-controller';
-import AllTrailsMapWrapper from '@/src/components/all-trails-map-wrapper';
-import TwoColumnLayout from '@/src/components/two-column-layout';
+import AllTrailsMapWrapper from '@/src/components/wrappers/all-trails-map-wrapper';
+import TwoColumnLayout from '@/src/components/ui/two-column-layout';
 
 const Page = async () => {
   let trails;

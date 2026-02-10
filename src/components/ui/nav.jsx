@@ -1,6 +1,6 @@
 'use client';
 
-import NavButton from './nav-button';
+import NavButton from '@/src/components/ui/nav-button';
 
 const Nav = () => {
   return (

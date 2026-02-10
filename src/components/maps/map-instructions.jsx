@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ButtonSmall from './button-small';
+import ButtonSmall from '@/src/components/ui/button-small';
 
 const MapInstructions = () => {
   const [showInstructions, setShowInstructions] = useState(false);

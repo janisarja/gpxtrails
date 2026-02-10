@@ -1,6 +1,6 @@
 'use client';
 
-import Nav from './nav';
+import Nav from '@/src/components/ui/nav';
 
 const Header = () => {
   return (

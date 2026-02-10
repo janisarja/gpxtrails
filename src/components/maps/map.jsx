@@ -1,8 +1,6 @@
 'use client';
 
 import { MapContainer, TileLayer } from 'react-leaflet';
-import { useEffect } from 'react';
-import { useMap } from 'react-leaflet';
 
 const Map = ({ trailLayer }) => {
 
