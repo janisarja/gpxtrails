@@ -1,11 +1,11 @@
 'use client';
 
-export default function TwoColumnLayout({
+const TwoColumnLayout = ({
   left,
   right,
   leftLabel = 'Primary content',
   rightLabel = 'Secondary content'
-}) {
+}) => {
   return (
     <div className="flex bg-white">
       <section
@@ -23,3 +23,5 @@ export default function TwoColumnLayout({
     </div>
   );
 }
+
+export default TwoColumnLayout;
