@@ -3,6 +3,49 @@
 import { useId } from 'react';
 import { gpx } from '@tmcw/togeojson';
 
+const MIN_POINT_DISTANCE_METERS = 10;
+
+const toRadians = (value) => (value * Math.PI) / 180;
+
+const getDistanceMeters = (first, second) => {
+  const [lng1, lat1] = first;
+  const [lng2, lat2] = second;
+
+  const earthRadiusMeters = 6371000;
+  const deltaLat = toRadians(lat2 - lat1);
+  const deltaLng = toRadians(lng2 - lng1);
+  const lat1Radians = toRadians(lat1);
+  const lat2Radians = toRadians(lat2);
+
+  const a =
+    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+    Math.cos(lat1Radians) * Math.cos(lat2Radians) * Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return earthRadiusMeters * c;
+};
+
+const thinCoordinates = (coordinates, minDistanceMeters) => {
+  if (!Array.isArray(coordinates) || coordinates.length <= 2) {
+    return coordinates;
+  }
+
+  const filtered = [coordinates[0]];
+
+  for (let index = 1; index < coordinates.length - 1; index += 1) {
+    const point = coordinates[index];
+    const lastKept = filtered[filtered.length - 1];
+
+    if (getDistanceMeters(lastKept, point) >= minDistanceMeters) {
+      filtered.push(point);
+    }
+  }
+
+  filtered.push(coordinates[coordinates.length - 1]);
+
+  return filtered;
+};
+
 const GPXLoader = ({ setTrail }) => {
   const inputId = useId();
   const labelId = useId();
@@ -19,9 +62,31 @@ const GPXLoader = ({ setTrail }) => {
 
     const text = await file.text();
     const xml = new DOMParser().parseFromString(text, 'text/xml');
-    const geojson = gpx(xml).features[0];
+    const parsed = gpx(xml);
+    const geojson = parsed.features?.[0];
 
-    setTrail(geojson);
+    if (!geojson || geojson.geometry?.type !== 'LineString') {
+      alert('Could not read a GPX track from this file');
+      return;
+    }
+
+    const coordinates = geojson.geometry.coordinates;
+
+    if (!Array.isArray(coordinates) || coordinates.length < 2) {
+      alert('This GPX file does not contain enough track points');
+      return;
+    }
+
+    const filteredCoordinates = thinCoordinates(coordinates, MIN_POINT_DISTANCE_METERS);
+    const filteredGeojson = {
+      ...geojson,
+      geometry: {
+        ...geojson.geometry,
+        coordinates: filteredCoordinates,
+      },
+    };
+
+    setTrail(filteredGeojson);
   };
 
   return (
