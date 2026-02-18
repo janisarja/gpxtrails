@@ -14,7 +14,7 @@ Current functionality includes:
 * Find trails on map
 * Individual trail pages
 
-![Trail Editor](./docs/images/screenshot_editor.jpg)
+![Trail Editor](./docs/images/editor_tool.gif)
 <em>Trail editing/creation tool</em>
 
 Planned features include:
