@@ -1,6 +1,8 @@
 # GPXTrails
 
-GPXTrails is a work‑in‑progress project for sharing and working with GPX trail data in a clean, user‑friendly way. The goal of the project is to make it easier for runners, hikers and outdoor enthusiasts to find and share trail information, while also serving as a demonstration of modern full‑stack development practices.
+This is a work‑in‑progress project for sharing and working with GPX trail data in a clean, user‑friendly way. Information on trails is often scattered or behind pay walls and maps found online are often poor in quality. The goal of the project is to make it easier for runners, hikers and outdoor enthusiasts to find and share trail information.
+
+GPX is a common dataformat for recording activities, and navigation, that most smart watches support. The idea behind this project is, when you go on a run or a hike, you can upload your recorded route from a GPX-file and edit out little detours and GPS failures, and post it on the platform. Now other people can find cool trails near them and download the GPX-file, look at the route on the map or just find new areas and ideas. Eventually the aim is to support also planning out routes that snap to actual trails.
 
 ## What It Does (So Far)
 
@@ -9,12 +11,29 @@ Current functionality includes:
 * GPX upload/download and parsing
 * Interactive map for editing trails
 * Trail database
+* Find trails on map
+* Individual trail pages
+
+![Trail Editor](./docs/images/screenshot_editor.jpg)
+<em>Trail editing/creation tool</em>
 
 Planned features include:
 
+* User authentication and deployment
 * Trail filtering and search
-* Advanced editing features
-* User authentication
+* Geospatial search
+* Extract more statistics (elevation change, etc.)
+* Profile/settings page, view to see own trails
+* Edit own existing trails
+* Add images to trail descriptions
+* Save/like trails
+* Other social features?
+* Import routes from Strava
+* Navigation features on map (possible native application)
+* Advanced editing features, including
+  * Combining multiple gpx files
+  * Deleting multiple points on a trail at once
+  * Snap route to actual trails
 
 ---
 
